@@ -30,13 +30,16 @@
     <string name="team1_add_edit_suspension_button_text">Add/Edit Suspensions for Team 1</string>
     <string name="team1_final_score_header">Total Runs for Team 1:</string>
     <string name="team1_details_next_button_text">Next - Enter Details for Team 2</string>
-    <string-array name="balls_entries">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>>
-        <item>4</item>
-        <item>5</item>
-    </string-array>
+
+    <string name="team2_details_header">Details for Team 2</string>
+    <string name="team2_details_desc">Please select the appropriate values:</string>
+    <string name="team2_details2_desc">No. of overs allocated at the start:\nEnter overs followed by balls after the decimal (e.g. 23.2 or 45.0)</string>
+    <string name="team2_overs_header">Overs:</string>
+    <string name="team2_suspension_header">Add/Edit match suspensions here (if any):</string>
+    <string name="team2_add_edit_suspension_button_text">Add/Edit Suspensions for Team 2</string>
+    <string name="team2_final_score_header">Total Runs for Team 2:</string>
+    <string name="team2_final_score_desc">(Enter total runs only if match is over)</string>
+    <string name="team2_details_next_button_text">Calculate Final Result</string>
+
 
 </resources>
