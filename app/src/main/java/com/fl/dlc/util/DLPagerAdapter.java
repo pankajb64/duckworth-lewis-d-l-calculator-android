@@ -1,8 +1,13 @@
-package com.fl.dlc;
+package com.fl.dlc.util;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.fl.dlc.fragment.FinalResultFragment;
+import com.fl.dlc.fragment.Team1DetailsFragment;
+import com.fl.dlc.fragment.Team2DetailsFragment;
+import com.fl.dlc.fragment.TypeAndFormatFragment;
 
 
 public class DLPagerAdapter extends FragmentPagerAdapter {

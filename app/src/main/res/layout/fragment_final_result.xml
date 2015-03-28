@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.fl.dlc.FinalResultFragment">
+    tools:context="com.fl.dlc.fragment.FinalResultFragment">
 
-    <TextView
+<TextView
         android:id="@+id/final_result_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

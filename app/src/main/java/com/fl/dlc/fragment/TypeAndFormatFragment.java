@@ -1,4 +1,4 @@
-package com.fl.dlc;
+package com.fl.dlc.fragment;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -8,20 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fl.dlc.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Team2DetailsFragment.OnFragmentInteractionListener} interface
+ * {@link TypeAndFormatFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Team2DetailsFragment#newInstance} factory method to
+ * Use the {@link TypeAndFormatFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Team2DetailsFragment extends Fragment {
+public class TypeAndFormatFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Team2DetailsFragment() {
+    public TypeAndFormatFragment() {
         // Required empty public constructor
     }
 
@@ -29,11 +31,11 @@ public class Team2DetailsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment Team2DetailsFragment.
+     * @return A new instance of fragment TypeAndFormatFragment.
      */
 
-    public static Team2DetailsFragment newInstance() {
-        Team2DetailsFragment fragment = new Team2DetailsFragment();
+    public static TypeAndFormatFragment newInstance() {
+        TypeAndFormatFragment fragment = new TypeAndFormatFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -51,7 +53,7 @@ public class Team2DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_team2_details, container, false);
+        return inflater.inflate(R.layout.fragment_type_and_format, container, false);
     }
 
     @Override

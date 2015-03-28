@@ -1,4 +1,4 @@
-package com.fl.dlc;
+package com.fl.dlc.activity;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +9,12 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.fl.dlc.R;
+import com.fl.dlc.fragment.FinalResultFragment;
+import com.fl.dlc.fragment.Team1DetailsFragment;
+import com.fl.dlc.fragment.Team2DetailsFragment;
+import com.fl.dlc.fragment.TypeAndFormatFragment;
+import com.fl.dlc.util.DLPagerAdapter;
 
 
 public class DLMainActivity extends ActionBarActivity
