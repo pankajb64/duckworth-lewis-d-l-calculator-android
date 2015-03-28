@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -14,6 +15,7 @@ import com.fl.dlc.fragment.FinalResultFragment;
 import com.fl.dlc.fragment.Team1DetailsFragment;
 import com.fl.dlc.fragment.Team2DetailsFragment;
 import com.fl.dlc.fragment.TypeAndFormatFragment;
+import com.fl.dlc.util.DLConstants;
 import com.fl.dlc.util.DLPagerAdapter;
 
 
@@ -23,6 +25,7 @@ public class DLMainActivity extends ActionBarActivity
         Team1DetailsFragment.OnFragmentInteractionListener,
         Team2DetailsFragment.OnFragmentInteractionListener {
 
+    ViewPager viewPager;
     DLPagerAdapter adapter;
 
     @Override
@@ -30,7 +33,7 @@ public class DLMainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dlmain);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager = (ViewPager) findViewById(R.id.pager);
         adapter = new DLPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
@@ -64,5 +67,20 @@ public class DLMainActivity extends ActionBarActivity
     public void onFragmentInteraction(Uri uri) {
         Toast toast = Toast.makeText(this, "Wheeee!", Toast.LENGTH_SHORT);
         //toast.show();
+    }
+
+    public void moveToTeam1Details(View view) {
+
+        viewPager.setCurrentItem(DLConstants.TEAM1_DETAILS_FRAGMENT, true);
+    }
+
+    public void moveToTeam2Details(View view) {
+
+        viewPager.setCurrentItem(DLConstants.TEAM2_DETAILS_FRAGMENT, true);
+    }
+
+    public void moveToFinalResult(View view) {
+
+        viewPager.setCurrentItem(DLConstants.FINAL_RESULT_FRAGMENT, true);
     }
 }

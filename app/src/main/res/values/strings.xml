@@ -30,6 +30,7 @@
     <string name="team1_add_edit_suspension_button_text">Add/Edit Suspensions for Team 1</string>
     <string name="team1_final_score_header">Total Runs for Team 1:</string>
     <string name="team1_details_next_button_text">Next - Enter Details for Team 2</string>
+    <string name="team1_overs_desc">Default is 50 overs for One-Day, 20 overs for T20</string>
 
     <string name="team2_details_header">Details for Team 2</string>
     <string name="team2_details_desc">Please select the appropriate values:</string>
@@ -40,6 +41,7 @@
     <string name="team2_final_score_header">Total Runs for Team 2:</string>
     <string name="team2_final_score_desc">(Enter total runs only if match is over)</string>
     <string name="team2_details_next_button_text">Next - Get Final Result</string>
+    <string name="team2_overs_desc">Default is 50 overs for One-Day, 20 overs for T20</string>
 
     <string name="final_result_header">Final Result</string>
     <string name="calculate_final_result_button_text">Calculate Final Result</string>

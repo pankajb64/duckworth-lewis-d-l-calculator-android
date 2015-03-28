@@ -76,6 +76,12 @@
             android:textSize="20sp" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/team2_overs_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/team2_overs_desc" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -147,6 +153,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
+        android:onClick="moveToFinalResult"
         android:text="@string/team2_details_next_button_text" />
 
 </LinearLayout>

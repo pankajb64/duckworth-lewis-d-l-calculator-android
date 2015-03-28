@@ -46,7 +46,6 @@ public class TypeAndFormatFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
-
     }
 
     @Override
@@ -86,5 +85,4 @@ public class TypeAndFormatFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         public void onFragmentInteraction(Uri uri);
     }
-
 }
