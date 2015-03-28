@@ -57,6 +57,6 @@ public class DLMainActivity extends ActionBarActivity
 
     public void onFragmentInteraction(Uri uri) {
         Toast toast = Toast.makeText(this, "Wheeee!", Toast.LENGTH_SHORT);
-        toast.show();
+        //toast.show();
     }
 }

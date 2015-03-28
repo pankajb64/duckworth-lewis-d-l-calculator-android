@@ -24,16 +24,16 @@ public class DLPagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case TYPE_AND_FORMAT_FRAGMENT:
-                return TypeAndFormatFragment.newInstance("", "");
+                return TypeAndFormatFragment.newInstance();
             case TEAM1_DETAILS_FRAGMENT:
-                return Team1DetailsFragment.newInstance("", "");
+                return Team1DetailsFragment.newInstance();
             case TEAM2_DETAILS_FRAGMENT:
-                return Team2DetailsFragment.newInstance("", "");
+                return Team2DetailsFragment.newInstance();
             case FINAL_RESULT_FRAGMENT:
-                return FinalResultFragment.newInstance("", "");
+                return FinalResultFragment.newInstance();
             //case ABOUT_US_FRAGMENT: return AboutUsFragment.newInstance("","");
             default:
-                return TypeAndFormatFragment.newInstance("", "");
+                return TypeAndFormatFragment.newInstance();
         }
     }
 
