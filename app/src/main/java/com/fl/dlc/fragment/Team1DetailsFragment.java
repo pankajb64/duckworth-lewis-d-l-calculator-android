@@ -7,8 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.fl.dlc.R;
+import com.fl.dlc.util.DLModel;
+import com.fl.dlc.util.DLUtil;
 
 
 /**
@@ -22,6 +25,8 @@ import com.fl.dlc.R;
 public class Team1DetailsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private EditText overs_text;
+    private EditText score_text;
 
     public Team1DetailsFragment() {
         // Required empty public constructor
@@ -53,7 +58,10 @@ public class Team1DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_team1_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_team1_details, container, false);
+        overs_text = (EditText) view.findViewById(R.id.team1_overs_text);
+        score_text = (EditText) view.findViewById(R.id.team1_final_score_text);
+        return view;
     }
 
     @Override
@@ -65,6 +73,17 @@ public class Team1DetailsFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+
+        Double overs = DLUtil.getValidOvers(overs_text.getText());
+        Integer score = DLUtil.getValidScore(score_text.getText());
+        DLModel.setT1StartOvers(overs);
+        DLModel.setT1FinalScore(score);
+
+        super.onDestroyView();
     }
 
     @Override
