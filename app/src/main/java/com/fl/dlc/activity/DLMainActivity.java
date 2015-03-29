@@ -7,6 +7,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -16,7 +19,9 @@ import com.fl.dlc.fragment.Team1DetailsFragment;
 import com.fl.dlc.fragment.Team2DetailsFragment;
 import com.fl.dlc.fragment.TypeAndFormatFragment;
 import com.fl.dlc.util.DLConstants;
+import com.fl.dlc.util.DLModel;
 import com.fl.dlc.util.DLPagerAdapter;
+import com.fl.dlc.util.DLUtil;
 
 
 public class DLMainActivity extends ActionBarActivity
@@ -82,5 +87,62 @@ public class DLMainActivity extends ActionBarActivity
     public void moveToFinalResult(View view) {
 
         viewPager.setCurrentItem(DLConstants.FINAL_RESULT_FRAGMENT, true);
+    }
+
+    public void calculateFinalResult(View view) {
+        View w = (View) view.getParent();
+        EditText team1_overs = (EditText) w.findViewById(R.id.team1_overs_text);
+        Double t1_overs = DLUtil.getValidOvers(team1_overs.getText());
+
+        if (t1_overs == null) {
+            //alert enter overs properly
+            return;
+        }
+
+        DLModel.setT1StartOvers(t1_overs);
+
+        EditText team1_score = (EditText) findViewById(R.id.team1_final_score_text);
+        Integer t1_score = DLUtil.getValidScore(team1_score.getText());
+
+        if (t1_score == null) {
+            //alert enter score properly
+            return;
+        }
+
+        DLModel.setT1FinalScore(t1_score);
+
+        EditText team2_overs = (EditText) findViewById(R.id.team2_overs_text);
+        Double t2_overs = DLUtil.getValidOvers(team2_overs.getText());
+
+        if (t2_overs == null) {
+            //alert enter overs properly
+            return;
+        }
+
+        DLModel.setT2StartOvers(t2_overs);
+
+        EditText team2_score = (EditText) findViewById(R.id.team2_final_score_text);
+        Integer t2_score = DLUtil.getValidScore(team2_score.getText());
+
+        if (t2_score == null) {
+            //alert enter score properly
+            return;
+        }
+
+        DLModel.setT2FinalScore(t2_score);
+
+        Spinner format_spinner = (Spinner) findViewById(R.id.format_spinner);
+        int format = format_spinner.getSelectedItemPosition();
+
+        Spinner type_spinner = (Spinner) findViewById(R.id.type_spinner);
+        int type = type_spinner.getSelectedItemPosition();
+
+        int g = DLUtil.getG(format, type);
+        DLModel.setG(g);
+
+        String result = DLUtil.calculateResult();
+
+        TextView result_status = (TextView) findViewById(R.id.final_result_status);
+        result_status.setText(result);
     }
 }

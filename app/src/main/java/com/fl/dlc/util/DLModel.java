@@ -3,10 +3,10 @@ package com.fl.dlc.util;
 public class DLModel {
 
     public static int g;
-    public static double t1StartOvers;
-    public static int t1FinalScore;
-    public static double t2StartOvers;
-    public static int t2FinalScore;
+    public static Double t1StartOvers;
+    public static Integer t1FinalScore;
+    public static Double t2StartOvers;
+    public static Integer t2FinalScore;
 
     public static int getG() {
         return g;
@@ -16,35 +16,35 @@ public class DLModel {
         DLModel.g = g;
     }
 
-    public static double getT1StartOvers() {
+    public static Double getT1StartOvers() {
         return t1StartOvers;
     }
 
-    public static void setT1StartOvers(double t1StartOvers) {
+    public static void setT1StartOvers(Double t1StartOvers) {
         DLModel.t1StartOvers = t1StartOvers;
     }
 
-    public static int getT1FinalScore() {
+    public static Integer getT1FinalScore() {
         return t1FinalScore;
     }
 
-    public static void setT1FinalScore(int t1FinalScore) {
+    public static void setT1FinalScore(Integer t1FinalScore) {
         DLModel.t1FinalScore = t1FinalScore;
     }
 
-    public static double getT2StartOvers() {
+    public static Double getT2StartOvers() {
         return t2StartOvers;
     }
 
-    public static void setT2StartOvers(double t2StartOvers) {
+    public static void setT2StartOvers(Double t2StartOvers) {
         DLModel.t2StartOvers = t2StartOvers;
     }
 
-    public static int getT2FinalScore() {
+    public static Integer getT2FinalScore() {
         return t2FinalScore;
     }
 
-    public static void setT2FinalScore(int t2FinalScore) {
+    public static void setT2FinalScore(Integer t2FinalScore) {
         DLModel.t2FinalScore = t2FinalScore;
     }
 }
