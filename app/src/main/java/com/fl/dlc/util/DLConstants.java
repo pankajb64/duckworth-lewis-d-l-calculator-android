@@ -12,6 +12,8 @@ public class DLConstants {
     public static final int ABOUT_US_FRAGMENT = 4;
     public static final int NUM_ITEMS = 4;
 
-    public static final int G50_TEST_NATIONS = 245;
-    public static final int G50_REST = 200;
+    public static final int G50_ODI_TEST_NATIONS = 245;
+    public static final int G50_ODI_REST = 200;
+    public static final int ONE_DAY = 0;
+    public static final int T20 = 1;
 }

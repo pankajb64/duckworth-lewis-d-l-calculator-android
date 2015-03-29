@@ -78,8 +78,8 @@ public class Team1DetailsFragment extends Fragment {
     @Override
     public void onDestroyView() {
 
-        Double overs = DLUtil.getValidOvers(overs_text.getText());
-        Integer score = DLUtil.getValidScore(score_text.getText());
+        Double overs = DLUtil.getValidOvers(overs_text.getText().toString());
+        Integer score = DLUtil.getValidScore(score_text.getText().toString());
         DLModel.setT1StartOvers(overs);
         DLModel.setT1FinalScore(score);
 

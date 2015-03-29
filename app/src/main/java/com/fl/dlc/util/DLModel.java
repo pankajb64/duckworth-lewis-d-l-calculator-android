@@ -2,12 +2,20 @@ package com.fl.dlc.util;
 
 public class DLModel {
 
-    public static int g;
-    public static Double t1StartOvers;
-    public static Integer t1FinalScore;
-    public static Double t2StartOvers;
-    public static Integer t2FinalScore;
+    private static int format;
+    private static int g;
+    private static Double t1StartOvers;
+    private static Integer t1FinalScore;
+    private static Double t2StartOvers;
+    private static Integer t2FinalScore;
 
+    public static int getFormat() {
+        return format;
+    }
+
+    public static void setFormat(int format) {
+        DLModel.format = format;
+    }
     public static int getG() {
         return g;
     }

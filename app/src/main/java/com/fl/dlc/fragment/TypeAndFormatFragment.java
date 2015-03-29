@@ -77,9 +77,10 @@ public class TypeAndFormatFragment extends Fragment {
     @Override
     public void onDestroyView() {
 
-        int format = format_spinner.getSelectedItemPosition();
+        int format = DLUtil.getFormat(format_spinner.getSelectedItemPosition());
         int type = type_spinner.getSelectedItemPosition();
         int g = DLUtil.getG(format, type);
+        DLModel.setFormat(format);
         DLModel.setG(g);
 
         super.onDestroyView();

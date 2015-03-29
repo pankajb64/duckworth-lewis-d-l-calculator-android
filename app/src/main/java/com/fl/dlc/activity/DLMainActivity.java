@@ -18,8 +18,8 @@ import com.fl.dlc.fragment.Team1DetailsFragment;
 import com.fl.dlc.fragment.Team2DetailsFragment;
 import com.fl.dlc.fragment.TypeAndFormatFragment;
 import com.fl.dlc.util.DLConstants;
-import com.fl.dlc.util.DLModel;
 import com.fl.dlc.util.DLPagerAdapter;
+import com.fl.dlc.util.DLUtil;
 
 
 public class DLMainActivity extends ActionBarActivity
@@ -91,7 +91,7 @@ public class DLMainActivity extends ActionBarActivity
 
         LinearLayout layout = (LinearLayout) view.getParent();
         TextView textView = (TextView) layout.findViewById(R.id.final_result_status);
-        String text = DLModel.t1StartOvers + " Overs";
+        String text = DLUtil.calculateResult();
         textView.setText(text);
 
     }

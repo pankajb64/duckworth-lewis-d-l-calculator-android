@@ -76,10 +76,23 @@ public class Team2DetailsFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        System.out.println("onPause Team 2");
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        System.out.println("onStop Team 2");
+        super.onStop();
+    }
+    
+    @Override
     public void onDestroyView() {
 
-        Double overs = DLUtil.getValidOvers(overs_text.getText());
-        Integer score = DLUtil.getValidScore(score_text.getText());
+        System.out.println("OnDestroyView Team2");
+        Double overs = DLUtil.getValidOvers(overs_text.getText().toString());
+        Integer score = DLUtil.getValidScore(score_text.getText().toString());
         DLModel.setT2StartOvers(overs);
         DLModel.setT2FinalScore(score);
 
