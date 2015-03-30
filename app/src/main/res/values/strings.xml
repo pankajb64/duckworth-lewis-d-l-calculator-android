@@ -46,4 +46,5 @@
     <string name="final_result_header">Final Result</string>
     <string name="calculate_final_result_button_text">Calculate Final Result</string>
     <string name="final_result_status">Team 2 need 250 runs to win from 45 overs with 10 wickets remaining (D/L Method)</string>
+
 </resources>

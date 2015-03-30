@@ -26,7 +26,8 @@ public class DLMainActivity extends ActionBarActivity
         implements TypeAndFormatFragment.OnFragmentInteractionListener,
         FinalResultFragment.OnFragmentInteractionListener,
         Team1DetailsFragment.OnFragmentInteractionListener,
-        Team2DetailsFragment.OnFragmentInteractionListener {
+        Team2DetailsFragment.OnFragmentInteractionListener,
+        BlankFragment.OnFragmentInteractionListener {
 
     ViewPager viewPager;
     DLPagerAdapter adapter;
