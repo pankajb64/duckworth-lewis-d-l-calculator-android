@@ -14,6 +14,14 @@ public class DLConstants {
 
     public static final int G50_ODI_TEST_NATIONS = 245;
     public static final int G50_ODI_REST = 200;
-    public static final int ONE_DAY = 0;
-    public static final int T20 = 1;
+    public static final int ODI = 0;
+    public static final int ODD = 1;
+    public static final int T20I = 2;
+    public static final int T20D = 3;
+
+    public static final int TEAM_1 = 1;
+    public static final int TEAM_2 = 2;
+
+    public static final double MAX_ODI_OVERS = 50.0;
+    public static final double MAX_T20_OVERS = 20.0;
 }

@@ -7,11 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 
 import com.fl.dlc.R;
-import com.fl.dlc.util.DLModel;
-import com.fl.dlc.util.DLUtil;
 
 
 /**
@@ -25,8 +22,6 @@ import com.fl.dlc.util.DLUtil;
 public class TypeAndFormatFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private Spinner format_spinner;
-    private Spinner type_spinner;
 
     public TypeAndFormatFragment() {
         // Required empty public constructor
@@ -58,8 +53,6 @@ public class TypeAndFormatFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_type_and_format, container, false);
-        format_spinner = (Spinner) view.findViewById(R.id.format_spinner);
-        type_spinner = (Spinner) view.findViewById(R.id.type_spinner);
         return view;
     }
 
@@ -74,17 +67,6 @@ public class TypeAndFormatFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onDestroyView() {
-
-        int format = DLUtil.getFormat(format_spinner.getSelectedItemPosition());
-        int type = type_spinner.getSelectedItemPosition();
-        int g = DLUtil.getG(format, type);
-        DLModel.setFormat(format);
-        DLModel.setG(g);
-
-        super.onDestroyView();
-    }
     @Override
     public void onDetach() {
         super.onDetach();

@@ -3,6 +3,8 @@ package com.fl.dlc.util;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.view.ViewGroup;
 
 import com.fl.dlc.fragment.FinalResultFragment;
 import com.fl.dlc.fragment.Team1DetailsFragment;
@@ -12,8 +14,13 @@ import com.fl.dlc.fragment.TypeAndFormatFragment;
 
 public class DLPagerAdapter extends FragmentPagerAdapter {
 
+    private final FragmentManager mFragmentManager;
+    private FragmentTransaction mTransaction;
+
     public DLPagerAdapter(FragmentManager fm) {
+
         super(fm);
+        mFragmentManager = fm;
     }
 
     @Override
@@ -55,6 +62,16 @@ public class DLPagerAdapter extends FragmentPagerAdapter {
             default:
                 return "Type and Format";
         }
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+
+        if (mTransaction == null) {
+            mTransaction = mFragmentManager.beginTransaction();
+        }
+
+        mTransaction.hide((Fragment) object);
     }
 
 }

@@ -7,7 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.fl.dlc.fragment.Team1DetailsFragment;
 import com.fl.dlc.fragment.Team2DetailsFragment;
 import com.fl.dlc.fragment.TypeAndFormatFragment;
 import com.fl.dlc.util.DLConstants;
+import com.fl.dlc.util.DLModel;
 import com.fl.dlc.util.DLPagerAdapter;
 import com.fl.dlc.util.DLUtil;
 
@@ -26,8 +28,7 @@ public class DLMainActivity extends ActionBarActivity
         implements TypeAndFormatFragment.OnFragmentInteractionListener,
         FinalResultFragment.OnFragmentInteractionListener,
         Team1DetailsFragment.OnFragmentInteractionListener,
-        Team2DetailsFragment.OnFragmentInteractionListener,
-        BlankFragment.OnFragmentInteractionListener {
+        Team2DetailsFragment.OnFragmentInteractionListener {
 
     ViewPager viewPager;
     DLPagerAdapter adapter;
@@ -90,10 +91,65 @@ public class DLMainActivity extends ActionBarActivity
 
     public void calculateFinalResult(View view) {
 
-        LinearLayout layout = (LinearLayout) view.getParent();
-        TextView textView = (TextView) layout.findViewById(R.id.final_result_status);
-        String text = DLUtil.calculateResult();
-        textView.setText(text);
+        Spinner format_spinner = (Spinner) findViewById(R.id.format_spinner);
+        int format = format_spinner.getSelectedItemPosition();
+        DLModel.setFormat(format);
 
+        Spinner type_spinner = (Spinner) findViewById(R.id.type_spinner);
+        int type = type_spinner.getSelectedItemPosition();
+
+        int g = DLUtil.getG(format, type);
+        DLModel.setG(g);
+
+        EditText team1_overs = (EditText) findViewById(R.id.team1_overs_text);
+        Double t1overs = DLUtil.getValidOvers(team1_overs.getText().toString(), DLConstants.TEAM_1);
+
+        if (t1overs == null) {
+            DLUtil.showAlertDialog(this, "Invalid Overs for Team 1", "Please enter a valid amount of overs for Team 1");
+            return;
+        }
+
+        DLModel.setT1StartOvers(t1overs);
+
+        EditText team1_score = (EditText) findViewById(R.id.team1_final_score_text);
+        Integer t1score = DLUtil.getValidScore(team1_score.getText().toString());
+
+        if (t1score == null) {
+            DLUtil.showAlertDialog(this, "Invalid Score for Team 1", "Please enter a valid final score for Team 1");
+            return;
+        }
+
+        DLModel.setT1FinalScore(t1score);
+
+        EditText team2_overs = (EditText) findViewById(R.id.team2_overs_text);
+        Double t2overs = DLUtil.getValidOvers(team2_overs.getText().toString(), DLConstants.TEAM_2);
+
+        if (t2overs == null) {
+            DLUtil.showAlertDialog(this, "Invalid Overs for Team 2", "Please enter a valid amount of overs for Team 2");
+            return;
+        }
+
+        if (t2overs > t1overs) {
+            DLUtil.showAlertDialog(this, "Invalid Overs for Team 2", "Number of overs at the start for Team 2 cannot be greater than those for Team 1");
+            return;
+        }
+
+        DLModel.setT2StartOvers(t1overs);
+
+        EditText team2_score = (EditText) findViewById(R.id.team2_final_score_text);
+        String t2_score = team2_score.getText().toString().trim();
+        Integer t2score = DLUtil.getValidScore(t2_score);
+
+        if (t2score == null && t2_score != null && !t2_score.equals("")) {
+            DLUtil.showAlertDialog(this, "Invalid Score for Team 2", "Please enter a valid score for Team 2");
+            return;
+        }
+
+        DLModel.setT2FinalScore(t2score);
+
+        String result = DLUtil.calculateResult();
+        System.out.println(result);
+        TextView result_status = (TextView) findViewById(R.id.final_result_status);
+        result_status.setText(result);
     }
 }

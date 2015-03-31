@@ -41,7 +41,7 @@
     <string name="team2_final_score_header">Total Runs for Team 2:</string>
     <string name="team2_final_score_desc">(Enter total runs only if match is over)</string>
     <string name="team2_details_next_button_text">Next - Get Final Result</string>
-    <string name="team2_overs_desc">Default is 50 overs for One-Day, 20 overs for T20</string>
+    <string name="team2_overs_desc">Default is the number of overs alloted to Team 1</string>
 
     <string name="final_result_header">Final Result</string>
     <string name="calculate_final_result_button_text">Calculate Final Result</string>

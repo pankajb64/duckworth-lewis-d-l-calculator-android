@@ -1,17 +1,18 @@
 package com.fl.dlc.util;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+
 public class DLUtil {
 
-    public static Double getValidOvers(String text) {
+    public static Double getValidOvers(String text, int team) {
 
         System.out.println("Overs - " + text + " Format " + DLModel.getFormat());
         Double overs = 0.0;
 
-        if (DLModel.getFormat() == DLConstants.ONE_DAY) {
-            overs = 50.0;
-        } else {
-            overs = 20.0;
-        }
+        overs = getMaxOvers(team);
+
         if (text == null || text.trim().equals("")) {
             return overs;
         }
@@ -19,7 +20,7 @@ public class DLUtil {
         try {
             Double d = Double.parseDouble(text);
 
-            if (d > 50.0) {
+            if (d > overs) {
                 return null;
             }
 
@@ -92,9 +93,35 @@ public class DLUtil {
         return 100.0;
     }
 
-    public static int getFormat(int selectedItemPosition) {
+    public static void showAlertDialog(Context ctx, String title, String message) {
 
-        if (selectedItemPosition < 2) return DLConstants.ONE_DAY;
-        else return DLConstants.T20;
+        AlertDialog alertDialog = new AlertDialog.Builder(ctx).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+
+        alertDialog.setButton(DialogInterface.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialog.show();
+    }
+
+    public static double getMaxOvers(int team) {
+
+        double overs = 0;
+
+        if (DLModel.getFormat() <= DLConstants.ODI || DLModel.getFormat() == DLConstants.ODD) {
+            overs = DLConstants.MAX_ODI_OVERS;
+        } else {
+            overs = DLConstants.MAX_T20_OVERS;
+        }
+
+        if (team == DLConstants.TEAM_2) {
+            overs = DLModel.getT1StartOvers();
+        }
+
+        return overs;
     }
 }
