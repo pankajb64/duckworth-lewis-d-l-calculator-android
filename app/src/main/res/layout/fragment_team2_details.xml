@@ -1,160 +1,169 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:layout_marginTop="20dp"
     android:focusableInTouchMode="true"
     android:gravity="center"
     android:orientation="vertical"
+    android:paddingBottom="20dp"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
     tools:context="com.fl.dlc.fragment.Team2DetailsFragment">
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/team2_details_header"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/team2_details_header"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/team2_details_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="@string/team2_details_desc"
-            android:textSize="15sp" />
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
-        <TextView
-            android:id="@+id/team2_details2_desc"
+            <TextView
+                android:id="@+id/team2_details_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/team2_details_header"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/team2_details_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/team2_details_desc"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/team2_details2_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/team2_details2_desc"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/team2_overs_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/team2_overs_header"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="0dp" />
+
+            <EditText
+                android:id="@+id/team2_overs_text"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|center_horizontal"
+                android:inputType="numberDecimal"
+                android:paddingBottom="5dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/team2_overs_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/team2_overs_desc" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="@string/team2_details2_desc"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/team2_suspension_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/team2_suspension_header"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/team2_add_edit_suspension_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/team2_add_edit_suspension_button_text"
+                android:textSize="15sp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/team2_overs_header"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/team2_overs_header"
-            android:textSize="20sp" />
-
-        <View
-            android:layout_width="10dp"
-            android:layout_height="0dp" />
-
-        <EditText
-            android:id="@+id/team2_overs_text"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="bottom|center_horizontal"
-            android:inputType="numberDecimal"
-            android:paddingBottom="5dp"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/team2_overs_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/team2_overs_desc" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp">
-
-        <TextView
-            android:id="@+id/team2_suspension_header"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/team2_suspension_header"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/team2_final_score_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/team2_final_score_header"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="0dp" />
+
+            <EditText
+                android:id="@+id/team2_final_score_text"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="bottom|center_horizontal"
+                android:inputType="number"
+                android:paddingBottom="5dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/team2_final_score_desc" />
 
         <Button
-            android:id="@+id/team2_add_edit_suspension_button"
+            android:id="@+id/team2_details_next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/team2_add_edit_suspension_button_text"
-            android:textSize="15sp" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:onClick="moveToFinalResult"
+            android:text="@string/team2_details_next_button_text" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/team2_final_score_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/team2_final_score_header"
-            android:textSize="20sp" />
-
-        <View
-            android:layout_width="5dp"
-            android:layout_height="0dp" />
-
-        <EditText
-            android:id="@+id/team2_final_score_text"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="bottom|center_horizontal"
-            android:inputType="number"
-            android:paddingBottom="5dp"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/team2_final_score_desc" />
-
-    <Button
-        android:id="@+id/team2_details_next_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:onClick="moveToFinalResult"
-        android:text="@string/team2_details_next_button_text" />
-
-</LinearLayout>
-
+</ScrollView>
