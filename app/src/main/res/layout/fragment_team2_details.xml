@@ -116,6 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:onClick="addOrEditTeam2Suspensions"
                 android:text="@string/team2_add_edit_suspension_button_text"
                 android:textSize="15sp" />
 

@@ -1,5 +1,6 @@
 package com.fl.dlc.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -152,4 +153,23 @@ public class DLMainActivity extends ActionBarActivity
         TextView result_status = (TextView) findViewById(R.id.final_result_status);
         result_status.setText(result);
     }
+
+    public void addOrEditTeam1Suspensions(View view) {
+
+        addOrEditSuspensions(view, DLConstants.TEAM_1);
+    }
+
+
+    public void addOrEditTeam2Suspensions(View view) {
+
+        addOrEditSuspensions(view, DLConstants.TEAM_2);
+    }
+
+    private void addOrEditSuspensions(View view, int team) {
+
+        Intent intent = new Intent(this, SuspensionsActivity.class);
+        intent.putExtra(DLConstants.TEAM_ID, team);
+        startActivity(intent);
+    }
+
 }

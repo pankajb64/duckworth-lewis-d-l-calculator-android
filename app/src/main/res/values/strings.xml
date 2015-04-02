@@ -46,5 +46,9 @@
     <string name="final_result_header">Final Result</string>
     <string name="calculate_final_result_button_text">Calculate Final Result</string>
     <string name="final_result_status">Team 2 need 250 runs to win from 45 overs with 10 wickets remaining (D/L Method)</string>
+    <string name="title_activity_suspensions">SuspensionsActivity</string>
 
+    <string name="suspensions_list_header">Suspensions List</string>
+    <string name="add_new_suspension_button_text">Add a new Suspension</string>
+    <string name="suspensions_list_empty_text">No suspensions added yet.</string>
 </resources>

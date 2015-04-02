@@ -24,4 +24,6 @@ public class DLConstants {
 
     public static final double MAX_ODI_OVERS = 50.0;
     public static final double MAX_T20_OVERS = 20.0;
+
+    public static final String TEAM_ID = "team";
 }

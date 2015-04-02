@@ -1,5 +1,7 @@
 package com.fl.dlc.util;
 
+import java.util.List;
+
 public class DLModel {
 
     private static int format;
@@ -8,6 +10,8 @@ public class DLModel {
     private static Integer t1FinalScore;
     private static Double t2StartOvers;
     private static Integer t2FinalScore;
+    private static List<Suspension> t1Suspensions;
+    private static List<Suspension> t2Suspensions;
 
     public static int getFormat() {
         return format;
@@ -54,5 +58,21 @@ public class DLModel {
 
     public static void setT2FinalScore(Integer t2FinalScore) {
         DLModel.t2FinalScore = t2FinalScore;
+    }
+
+    public static List<Suspension> getT1Suspensions() {
+        return t1Suspensions;
+    }
+
+    public static void setT1Suspensions(List<Suspension> t1Suspensions) {
+        DLModel.t1Suspensions = t1Suspensions;
+    }
+
+    public static List<Suspension> getT2Suspensions() {
+        return t2Suspensions;
+    }
+
+    public static void setT2Suspensions(List<Suspension> t2Suspensions) {
+        DLModel.t2Suspensions = t2Suspensions;
     }
 }
