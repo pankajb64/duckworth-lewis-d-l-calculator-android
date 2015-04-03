@@ -45,6 +45,8 @@ public class DLMainActivity extends ActionBarActivity
 
         PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabStrip.setViewPager(viewPager);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
 

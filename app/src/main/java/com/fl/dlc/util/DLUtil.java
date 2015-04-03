@@ -46,6 +46,10 @@ public class DLUtil {
 
             overs = d;
 
+            if (overs < 0) {
+                return null;
+            }
+
         } catch (Exception e) {
             return null;
         }
@@ -62,11 +66,29 @@ public class DLUtil {
 
             score = Integer.parseInt(text);
 
+            if (score < 0) {
+                return null;
+            }
         } catch (Exception e) {
             return null;
         }
 
         return score;
+    }
+
+    public static Integer getValidWickets(String text) {
+
+        Integer wickets = getValidScore(text);
+
+        if (wickets == null) {
+            return null;
+        } else {
+            if (wickets > 10) {
+                return null;
+            }
+        }
+
+        return wickets;
     }
 
     public static int getG(int format, int type) {
@@ -123,5 +145,50 @@ public class DLUtil {
         }
 
         return overs;
+    }
+
+    public static double getStartOvers(int team) {
+
+        Double overs;
+
+        if (team == DLConstants.TEAM_1) {
+            overs = DLModel.getT1StartOvers();
+
+            if (overs == null) {
+                overs = getMaxOvers(team);
+            }
+        } else {
+            overs = DLModel.getT2StartOvers();
+
+            if (overs == null) {
+                overs = getStartOvers(DLConstants.TEAM_1);
+            }
+        }
+
+        return overs;
+    }
+
+    public static double getOverDifference(Double startOvers, Double endOvers) {
+
+        /*if(startOvers == Math.floor(startOvers)) {
+            startOvers = startOvers - 0.4; // for eg 12 becomes 11.6
+        }*/
+
+        Double startOvers1 = Math.floor(startOvers);
+        Double startOvers2 = startOvers - startOvers1;
+
+        Double endOvers1 = Math.floor(endOvers);
+        Double endOvers2 = endOvers - endOvers1;
+
+        Double diff1 = startOvers1 - endOvers1;
+        Double diff2 = startOvers2 - endOvers2;
+
+        if (diff2 < 0) {
+            diff1 -= 0.4; // for eg 12 becomes 11.6
+        }
+
+        diff1 += diff2;
+
+        return diff1;
     }
 }

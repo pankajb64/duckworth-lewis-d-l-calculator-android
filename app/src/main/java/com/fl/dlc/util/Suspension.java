@@ -48,4 +48,9 @@ public class Suspension {
     public void setEndOvers(Double endOvers) {
         this.endOvers = endOvers;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%.1f", DLUtil.getOverDifference(startOvers, endOvers)) + " overs lost (" + startOvers + "-" + endOvers + "), score is " + score + "/" + wickets;
+    }
 }

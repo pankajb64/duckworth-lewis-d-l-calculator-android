@@ -51,4 +51,15 @@
     <string name="suspensions_list_header">Suspensions List</string>
     <string name="add_new_suspension_button_text">Add a new Suspension</string>
     <string name="suspensions_list_empty_text">No suspensions added yet.</string>
+
+    <string name="add_suspension_header">Add New Suspension</string>
+    <string name="edit_suspension_header">Edit Suspension</string>
+    <string name="suspension_score_text_desc">Runs scored\nbefore suspension:</string>
+    <string name="suspension_wickets_text_desc">Wickets lost\nbefore suspension:</string>
+    <string name="suspension_overs_before_text_desc">Overs left\nbefore suspension:</string>
+    <string name="suspension_overs_after_text_desc">Overs left\nafter suspension:</string>
+    <string name="suspension_add_button_text">Add suspension</string>
+    <string name="suspension_reset_button_text">Reset fields</string>
+    <string name="suspension_save_edits_button_text">Save Edits</string>
+    <string name="suspension_delete_button_text">Delete suspension</string>
 </resources>
