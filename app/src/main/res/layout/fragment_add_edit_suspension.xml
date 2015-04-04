@@ -123,6 +123,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/add_suspensions_button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -149,7 +150,7 @@
     </LinearLayout>
 
     <LinearLayout
-        style="?android:attr/buttonBarStyle"
+        android:id="@+id/edit_suspension_buttons_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -158,7 +159,6 @@
 
         <Button
             android:id="@+id/suspension_save_edits_button"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
@@ -168,7 +168,6 @@
 
         <Button
             android:id="@+id/suspension_delete_button"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"

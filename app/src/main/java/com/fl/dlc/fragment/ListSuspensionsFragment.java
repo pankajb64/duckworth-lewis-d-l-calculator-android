@@ -1,12 +1,14 @@
 package com.fl.dlc.fragment;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,14 +23,15 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ListSuspensionsFragment.OnFragmentInteractionListener} interface
+ * {@link com.fl.dlc.fragment.ListSuspensionsFragment.OnSuspensionClickedListener} interface
  * to handle interaction events.
  * Use the {@link ListSuspensionsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ListSuspensionsFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    ArrayAdapter<Suspension> adapter;
+    private OnSuspensionClickedListener mListener;
     private int team;
     private List<Suspension> suspensions;
 
@@ -75,31 +78,41 @@ public class ListSuspensionsFragment extends Fragment {
         TextView textView = (TextView) view.findViewById(R.id.suspensions_list_empty_text);
         ListView listView = (ListView) view.findViewById(R.id.suspensions_list);
 
-        if (suspensions != null) {
-            textView.setVisibility(View.GONE);
-            listView.setVisibility(View.VISIBLE);
-            ArrayAdapter<Suspension> adapter = new ArrayAdapter<Suspension>(getActivity(), android.R.layout.simple_list_item_1, suspensions);
+        if (suspensions != null && suspensions.size() > 0) {
+            textView.setText(getString(R.string.suspensions_list_non_empty_text));
+            //listView.setVisibility(View.VISIBLE);
+            adapter = new ArrayAdapter<Suspension>(getActivity(), android.R.layout.simple_list_item_1, suspensions);
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    mListener.onSuspensionClicked(position, suspensions.get(position), DLConstants.SUSPENSION_EDIT);
+                }
+            });
+
+            registerForContextMenu(listView);
+
         } else {
-            textView.setVisibility(View.VISIBLE);
+            //textView.setVisibility(View.VISIBLE);
             listView.setVisibility(View.GONE);
+            textView.setText(getString(R.string.suspensions_list_empty_text));
         }
 
         return view;
     }
 
 
-    public void onButtonPressed(Uri uri) {
+    /*public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
-    }
+    }*/
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (OnSuspensionClickedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -112,6 +125,37 @@ public class ListSuspensionsFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+
+        super.onCreateContextMenu(menu, view, menuInfo);
+
+        menu.setHeaderTitle("Choose an option");
+        menu.add(0, view.getId(), 0, "Edit");
+        menu.add(0, view.getId(), 0, "Delete");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo adapterContextMenuInfo =
+                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int position = adapterContextMenuInfo.position;
+
+        if (item.getTitle() == "Edit") {
+
+            mListener.onSuspensionClicked(position, suspensions.get(position), DLConstants.SUSPENSION_EDIT);
+            return true;
+        }
+
+        if (item.getTitle() == "Delete") {
+            mListener.onSuspensionClicked(position, suspensions.get(position), DLConstants.SUSPENSION_DELETE);
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -122,9 +166,8 @@ public class ListSuspensionsFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+    public interface OnSuspensionClickedListener {
+        public void onSuspensionClicked(int position, Suspension suspension, int action);
     }
 
 }

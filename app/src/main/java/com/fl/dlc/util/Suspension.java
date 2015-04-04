@@ -1,6 +1,8 @@
 package com.fl.dlc.util;
 
-public class Suspension {
+import java.io.Serializable;
+
+public class Suspension implements Serializable {
 
     private Integer score;
     private Integer wickets;

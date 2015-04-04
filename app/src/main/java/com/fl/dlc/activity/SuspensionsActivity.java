@@ -1,5 +1,6 @@
 package com.fl.dlc.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -24,13 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SuspensionsActivity extends ActionBarActivity
-        implements ListSuspensionsFragment.OnFragmentInteractionListener,
+        implements ListSuspensionsFragment.OnSuspensionClickedListener,
         AddEditSuspensionFragment.OnFragmentInteractionListener {
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private ListSuspensionsFragment listSuspensionsFragment;
     private Suspension currentSuspension;
+    private int currentSuspensionPosition;
     private int team;
 
     @Override
@@ -64,7 +67,7 @@ public class SuspensionsActivity extends ActionBarActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_suspensions, menu);
+        //getMenuInflater().inflate(R.menu.menu_suspensions, menu);
         return true;
     }
 
@@ -90,8 +93,13 @@ public class SuspensionsActivity extends ActionBarActivity
 
     public void showAddSuspensionFragment(View view) {
 
+        showAddEditSuspensionFragment(null);
+    }
+
+    public void showAddEditSuspensionFragment(Suspension suspension) {
+
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.suspensions_container, AddEditSuspensionFragment.newInstance("", ""));
+        fragmentTransaction.replace(R.id.suspensions_container, AddEditSuspensionFragment.newInstance(suspension));
         fragmentTransaction.addToBackStack("listSuspensions");
         fragmentTransaction.commit();
     }
@@ -121,12 +129,8 @@ public class SuspensionsActivity extends ActionBarActivity
                 DLModel.setT2Suspensions(suspensions);
             }
 
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.suspensions_container, ListSuspensionsFragment.newInstance(team));
-            fragmentManager.popBackStack("listSuspensions", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            fragmentTransaction.commit();
+            moveToListSuspensions();
         }
-
     }
 
     public void resetFields(View view) {
@@ -147,10 +151,38 @@ public class SuspensionsActivity extends ActionBarActivity
 
     public void saveEdits(View view) {
 
+        currentSuspension = generateValidSuspension(view);
+
+        List<Suspension> suspensions;
+
+        if (currentSuspension != null) {
+
+            if (team == DLConstants.TEAM_1) {
+                suspensions = DLModel.getT1Suspensions();
+            } else {
+                suspensions = DLModel.getT2Suspensions();
+            }
+
+            /*if (suspensions == null) {
+                suspensions = new ArrayList<Suspension>();
+            }*/
+
+            suspensions.set(currentSuspensionPosition, currentSuspension);
+
+            if (team == DLConstants.TEAM_1) {
+                DLModel.setT1Suspensions(suspensions);
+            } else {
+                DLModel.setT2Suspensions(suspensions);
+            }
+
+            moveToListSuspensions();
+        }
     }
 
     public void deleteSuspension(View view) {
 
+        deleteSuspension();
+        moveToListSuspensions();
     }
 
     public Suspension generateValidSuspension(View view) {
@@ -216,5 +248,50 @@ public class SuspensionsActivity extends ActionBarActivity
         s.setEndOvers(overs_after);
 
         return s;
+    }
+
+    @Override
+    public void onSuspensionClicked(int position, Suspension suspension, int action) {
+
+        currentSuspensionPosition = position;
+
+        if (action == DLConstants.SUSPENSION_EDIT) {
+            showAddEditSuspensionFragment(suspension);
+        } else {
+            deleteSuspension(null);
+        }
+
+
+    }
+
+    public void moveToListSuspensions() {
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentManager.popBackStack("listSuspensions", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fragmentTransaction.replace(R.id.suspensions_container, ListSuspensionsFragment.newInstance(team));
+        fragmentTransaction.commit();
+
+        InputMethodManager manager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        manager.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+
+    }
+
+    public void deleteSuspension() {
+
+        List<Suspension> suspensions;
+
+        if (team == DLConstants.TEAM_1) {
+            suspensions = DLModel.getT1Suspensions();
+        } else {
+            suspensions = DLModel.getT2Suspensions();
+        }
+
+        suspensions.remove(currentSuspensionPosition);
+
+        if (team == DLConstants.TEAM_1) {
+            DLModel.setT1Suspensions(suspensions);
+        } else {
+            DLModel.setT2Suspensions(suspensions);
+        }
     }
 }

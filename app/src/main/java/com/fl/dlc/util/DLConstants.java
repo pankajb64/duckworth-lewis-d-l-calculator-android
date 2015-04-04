@@ -1,8 +1,5 @@
 package com.fl.dlc.util;
 
-/**
- * Created by kali on 29/3/15.
- */
 public class DLConstants {
 
     public static final int TYPE_AND_FORMAT_FRAGMENT = 0;
@@ -26,4 +23,8 @@ public class DLConstants {
     public static final double MAX_T20_OVERS = 20.0;
 
     public static final String TEAM_ID = "team";
+    public static final String SUSPENSION_KEY = "suspension";
+
+    public static final int SUSPENSION_EDIT = 0;
+    public static final int SUSPENSION_DELETE = 1;
 }

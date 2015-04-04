@@ -51,6 +51,7 @@
     <string name="suspensions_list_header">Suspensions List</string>
     <string name="add_new_suspension_button_text">Add a new Suspension</string>
     <string name="suspensions_list_empty_text">No suspensions added yet.</string>
+    <string name="suspensions_list_non_empty_text">Tap on a suspension to edit, Long Tap to delete it. </string>
 
     <string name="add_suspension_header">Add New Suspension</string>
     <string name="edit_suspension_header">Edit Suspension</string>
