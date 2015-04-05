@@ -3,6 +3,7 @@
     android:id="@+id/list_suspensions_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.fl.dlc.fragment.ListSuspensionsFragment">
@@ -20,15 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="@string/suspensions_list_empty_text"
         android:textSize="20sp" />
-
-    <ListView
-        android:id="@+id/suspensions_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp" />
 
     <Button
         android:id="@+id/add_new_suspension_button"
@@ -37,4 +32,16 @@
         android:layout_marginTop="20dp"
         android:onClick="showAddSuspensionFragment"
         android:text="@string/add_new_suspension_button_text" />
+
+    <ListView
+        android:id="@+id/suspensions_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:fadeScrollbars="false"
+        android:paddingBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
 </LinearLayout>

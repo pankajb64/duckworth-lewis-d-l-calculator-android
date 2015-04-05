@@ -81,7 +81,8 @@ public class ListSuspensionsFragment extends Fragment {
         if (suspensions != null && suspensions.size() > 0) {
             textView.setText(getString(R.string.suspensions_list_non_empty_text));
             //listView.setVisibility(View.VISIBLE);
-            adapter = new ArrayAdapter<Suspension>(getActivity(), android.R.layout.simple_list_item_1, suspensions);
+            //adapter = new ListSuspensionAdapter(getActivity(), suspensions);
+            adapter = new ArrayAdapter<Suspension>(getActivity(), R.layout.layout_list_suspension, suspensions);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

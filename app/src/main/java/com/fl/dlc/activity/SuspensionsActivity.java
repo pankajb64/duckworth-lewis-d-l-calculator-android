@@ -199,7 +199,7 @@ public class SuspensionsActivity extends ActionBarActivity
         Integer score = DLUtil.getValidScore(score_text.getText().toString());
 
         if (score == null) {
-            //alert
+            DLUtil.showAlertDialog(this, "Invalid Score Value", "Please enter a valid value for score");
             return null;
         }
 
@@ -208,7 +208,7 @@ public class SuspensionsActivity extends ActionBarActivity
         Integer wickets = DLUtil.getValidWickets(wickets_text.getText().toString());
 
         if (wickets == null) {
-            //alert
+            DLUtil.showAlertDialog(this, "Invalid Wickets Value", "Please enter a valid value for wickets");
             return null;
         }
 
@@ -217,12 +217,12 @@ public class SuspensionsActivity extends ActionBarActivity
         Double overs_before = DLUtil.getValidOvers(overs_before_text.getText().toString(), team);
 
         if (overs_before == null) {
-            //alert
+            DLUtil.showAlertDialog(this, "Invalid Overs Value", "Please enter a valid value for overs before suspension");
             return null;
         }
 
         if (overs_before > DLUtil.getStartOvers(team)) {
-            //alert
+            DLUtil.showAlertDialog(this, "Invalid Overs Value", "Overs before suspension cannot be greater than initial allocated overs");
             return null;
         }
 
@@ -231,17 +231,17 @@ public class SuspensionsActivity extends ActionBarActivity
         Double overs_after = DLUtil.getValidOvers(overs_after_text.getText().toString(), team);
 
         if (overs_after == null) {
-            //alert
+            DLUtil.showAlertDialog(this, "Invalid Overs Value", "Please enter a valid value for overs after suspension");
             return null;
         }
 
         if (overs_after > DLUtil.getStartOvers(team)) {
-            //alert
+            DLUtil.showAlertDialog(this, "Invalid Overs Value", "Overs after suspension cannot be greater than initial allocated overs");
             return null;
         }
 
         if (overs_after > overs_before) {
-            //alert
+            DLUtil.showAlertDialog(this, "Invalid Overs Value", "Overs after suspension cannot be greater than overs before suspension");
             return null;
         }
 
