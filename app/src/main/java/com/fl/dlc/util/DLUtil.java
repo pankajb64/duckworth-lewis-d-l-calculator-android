@@ -278,7 +278,7 @@ public class DLUtil {
 
     public static Double getResourceFromDB(int format, int wickets, double overs) {
 
-        return 1.0;
+        return DLDBConstants.dbhelper.getResource(format, overs, wickets);
     }
 
     public static int calculateParScore(Double r1, Double r2, int g, int s) {

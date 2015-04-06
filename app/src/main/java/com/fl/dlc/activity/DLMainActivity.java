@@ -20,6 +20,8 @@ import com.fl.dlc.fragment.Team1DetailsFragment;
 import com.fl.dlc.fragment.Team2DetailsFragment;
 import com.fl.dlc.fragment.TypeAndFormatFragment;
 import com.fl.dlc.util.DLConstants;
+import com.fl.dlc.util.DLDBConstants;
+import com.fl.dlc.util.DLDBHelper;
 import com.fl.dlc.util.DLModel;
 import com.fl.dlc.util.DLPagerAdapter;
 import com.fl.dlc.util.DLUtil;
@@ -37,6 +39,7 @@ public class DLMainActivity extends ActionBarActivity
 
     ViewPager viewPager;
     DLPagerAdapter adapter;
+    DLDBHelper dbhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,9 @@ public class DLMainActivity extends ActionBarActivity
         tabStrip.setViewPager(viewPager);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+        dbhelper = new DLDBHelper(this);
+        DLDBConstants.dbhelper = dbhelper;
     }
 
 
@@ -210,4 +216,9 @@ public class DLMainActivity extends ActionBarActivity
         startActivity(intent);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        dbhelper.close();
+    }
 }
