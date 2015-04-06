@@ -2,7 +2,7 @@ package com.fl.dlc.util;
 
 import java.io.Serializable;
 
-public class Suspension implements Serializable {
+public class Suspension implements Serializable, Comparable<Suspension> {
 
     private Integer score;
     private Integer wickets;
@@ -54,5 +54,10 @@ public class Suspension implements Serializable {
     @Override
     public String toString() {
         return String.format("%.1f", DLUtil.getOverDifference(startOvers, endOvers)) + " overs lost (" + startOvers + "-" + endOvers + "), score is " + score + "/" + wickets;
+    }
+
+    @Override
+    public int compareTo(Suspension another) {
+        return getStartOvers().compareTo(another.getStartOvers());
     }
 }

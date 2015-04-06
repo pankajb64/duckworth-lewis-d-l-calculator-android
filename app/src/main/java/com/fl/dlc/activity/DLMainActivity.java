@@ -23,6 +23,10 @@ import com.fl.dlc.util.DLConstants;
 import com.fl.dlc.util.DLModel;
 import com.fl.dlc.util.DLPagerAdapter;
 import com.fl.dlc.util.DLUtil;
+import com.fl.dlc.util.Suspension;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DLMainActivity extends ActionBarActivity
@@ -150,10 +154,42 @@ public class DLMainActivity extends ActionBarActivity
 
         DLModel.setT2FinalScore(t2score);
 
+        List<Suspension> t1_suspensions = DLModel.getT1Suspensions();
+
+        if (t1_suspensions == null) {
+            DLModel.setT1Suspensions(new ArrayList<Suspension>());
+        } else {
+            t1_suspensions = DLUtil.getValidAndNonOverlappingSuspensions(t1_suspensions, DLConstants.TEAM_1);
+
+            if (t1_suspensions == null) {
+                DLUtil.showAlertDialog(this, "Invalid Suspensions for Team 1", "Please check your suspension list for Team 1");
+                return;
+            }
+            DLModel.setT1Suspensions(t1_suspensions);
+        }
+
+        List<Suspension> t2_suspensions = DLModel.getT2Suspensions();
+
+        if (t2_suspensions == null) {
+            DLModel.setT2Suspensions(new ArrayList<Suspension>());
+        } else {
+            t2_suspensions = DLUtil.getValidAndNonOverlappingSuspensions(t2_suspensions, DLConstants.TEAM_1);
+
+            if (t2_suspensions == null) {
+                DLUtil.showAlertDialog(this, "Invalid Suspensions for Team 2", "Please check your suspension list for Team 2");
+                return;
+            }
+
+            DLModel.setT2Suspensions(t2_suspensions);
+        }
+
         String result = DLUtil.calculateResult();
         System.out.println(result);
-        TextView result_status = (TextView) findViewById(R.id.final_result_status);
-        result_status.setText(result);
+
+        if (result != null) {
+            TextView result_status = (TextView) findViewById(R.id.final_result_status);
+            result_status.setText(result);
+        }
     }
 
     public void addOrEditTeam1Suspensions(View view) {

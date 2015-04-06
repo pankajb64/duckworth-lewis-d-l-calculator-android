@@ -4,6 +4,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class DLUtil {
 
     public static Double getValidOvers(String text, int team) {
@@ -99,12 +103,22 @@ public class DLUtil {
 
     public static String calculateResult() {
 
-        double r1 = getTeam1Resource();
-        double r2 = getTeam2Resource();
-        double s = DLModel.getT1FinalScore();
-        double final_score = (s * r2 / r1) + 1;
+        Double r1 = getResources(DLModel.getT1StartOvers(), DLModel.getT1Suspensions(), DLModel.getFormat());
+        Double r2 = getResources(DLModel.getT2StartOvers(), DLModel.getT2Suspensions(), DLModel.getFormat());
 
-        return "Team 2 needs " + (int) final_score + " runs to win from " + DLModel.getT2StartOvers() + " overs with 10 wickets remaining (D/L Method)";
+        int g = DLModel.getG();
+        int s = DLModel.getT1FinalScore();
+
+        int par_score = calculateParScore(r1, r2, g, s);
+
+        Integer t2_score = DLModel.getT2FinalScore();
+
+        if (t2_score == null) {
+
+            return getTargetString(DLModel.getT2Suspensions(), par_score);
+        } else {
+            return getResultString(t2_score, par_score);
+        }
     }
 
     private static double getTeam2Resource() {
@@ -147,6 +161,15 @@ public class DLUtil {
         return overs;
     }
 
+    public static Integer getScore(int team) {
+
+        if (team == DLConstants.TEAM_1) {
+            return DLModel.getT1FinalScore();
+        } else {
+            return DLModel.getT2FinalScore();
+        }
+    }
+
     public static double getStartOvers(int team) {
 
         Double overs;
@@ -170,10 +193,6 @@ public class DLUtil {
 
     public static double getOverDifference(Double startOvers, Double endOvers) {
 
-        /*if(startOvers == Math.floor(startOvers)) {
-            startOvers = startOvers - 0.4; // for eg 12 becomes 11.6
-        }*/
-
         Double startOvers1 = Math.floor(startOvers);
         Double startOvers2 = startOvers - startOvers1;
 
@@ -190,5 +209,145 @@ public class DLUtil {
         diff1 += diff2;
 
         return diff1;
+    }
+
+    public static List<Suspension> getValidAndNonOverlappingSuspensions(List<Suspension> suspensions, int team) {
+
+        List<Suspension> sorted_suspensions = new ArrayList<Suspension>(suspensions);
+        Collections.sort(sorted_suspensions);
+
+        List<Suspension> nonOverlappingList = new ArrayList<>();
+
+        int i = 1;
+        Suspension currentSuspension = null;
+
+        while (i < sorted_suspensions.size()) {
+
+            Suspension s = sorted_suspensions.get(i);
+
+            if (currentSuspension == null) {
+                currentSuspension = new Suspension(s.getScore(), s.getWickets(), s.getStartOvers(), s.getEndOvers());
+            } else {
+                if (currentSuspension.getEndOvers() >= s.getStartOvers()
+                        || currentSuspension.getScore() > s.getScore()
+                        || currentSuspension.getWickets() > s.getWickets()) {
+                    return null;
+                } else {
+                    nonOverlappingList.add(currentSuspension);
+                    currentSuspension = null;
+                }
+            }
+        }
+
+        Integer score = getScore(team);
+
+        for (Suspension s1 : nonOverlappingList) {
+
+            if (score != null && s1.getScore() > score) {
+                return null;
+            }
+
+            if (s1.getWickets() >= 10) {
+                return null;
+            }
+
+            if (s1.getEndOvers() > getStartOvers(team)) {
+                return null;
+            }
+        }
+
+        return nonOverlappingList;
+
+    }
+
+    public static Double getResources(Double start_overs, List<Suspension> suspensions, int format) {
+
+        Double start_resource = getResourceFromDB(format, 0, start_overs);
+
+        for (Suspension s : suspensions) {
+
+            Double before_resource = getResourceFromDB(format, s.getWickets(), s.getStartOvers());
+            Double after_resource = getResourceFromDB(format, s.getWickets(), s.getEndOvers());
+
+            Double diff = before_resource - after_resource;
+            start_overs -= diff;
+        }
+
+        return start_resource;
+    }
+
+    public static Double getResourceFromDB(int format, int wickets, double overs) {
+
+        return 1.0;
+    }
+
+    public static int calculateParScore(Double r1, Double r2, int g, int s) {
+
+        Double score = 0.0;
+
+        if (r1 >= r2) {
+
+            score = s * r2 / r1;
+        } else {
+
+            score = s + ((r2 - r1) * g / 100);
+        }
+
+        return score.intValue();
+    }
+
+    public static String getTargetString(List<Suspension> suspensions, int par_score) {
+
+        String result = "";
+
+        int runs_req, wickets_left;
+        double overs_left;
+
+        if (suspensions != null && suspensions.size() > 0) {
+
+            Suspension last = suspensions.get(suspensions.size() - 1);
+            runs_req = (par_score + 1) - last.getScore();
+            wickets_left = 10 - last.getWickets();
+            overs_left = last.getEndOvers();
+        } else {
+
+            runs_req = par_score + 1;
+            wickets_left = 10;
+            overs_left = getStartOvers(DLConstants.TEAM_2);
+        }
+
+
+        result = "Team " + DLConstants.TEAM_2 + " needs " +
+                runs_req + " runs to win from " +
+                overs_left + " overs with " +
+                wickets_left + " wickets remaining (D/L Method).";
+
+        return result;
+    }
+
+    public static String getResultString(int t2_score, int par_score) {
+
+        String result = "";
+
+        int winner = 0;
+
+        if (t2_score == par_score) {
+
+            return "The match is tied (D/L Method).";
+        }
+
+        if (t2_score > par_score) {
+            winner = DLConstants.TEAM_2;
+        } else {
+            winner = DLConstants.TEAM_1;
+        }
+
+        int margin = Math.abs(t2_score - par_score);
+
+        result += "Team " + winner +
+                " won the match by " +
+                margin + " runs (D/L Method).";
+
+        return result;
     }
 }
