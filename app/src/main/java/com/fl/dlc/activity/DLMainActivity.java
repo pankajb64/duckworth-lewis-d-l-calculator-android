@@ -147,7 +147,7 @@ public class DLMainActivity extends ActionBarActivity
             return;
         }
 
-        DLModel.setT2StartOvers(t1overs);
+        DLModel.setT2StartOvers(t2overs);
 
         EditText team2_score = (EditText) findViewById(R.id.team2_final_score_text);
         String t2_score = team2_score.getText().toString().trim();
@@ -161,8 +161,8 @@ public class DLMainActivity extends ActionBarActivity
         DLModel.setT2FinalScore(t2score);
 
         List<Suspension> t1_suspensions = DLModel.getT1Suspensions();
-
-        if (t1_suspensions == null) {
+        System.out.println("t1_suspensions == null ? " + t1_suspensions);
+        if (t1_suspensions == null || t1_suspensions.size() == 0) {
             DLModel.setT1Suspensions(new ArrayList<Suspension>());
         } else {
             t1_suspensions = DLUtil.getValidAndNonOverlappingSuspensions(t1_suspensions, DLConstants.TEAM_1);
@@ -176,10 +176,10 @@ public class DLMainActivity extends ActionBarActivity
 
         List<Suspension> t2_suspensions = DLModel.getT2Suspensions();
 
-        if (t2_suspensions == null) {
+        if (t2_suspensions == null || t2_suspensions.size() == 0) {
             DLModel.setT2Suspensions(new ArrayList<Suspension>());
         } else {
-            t2_suspensions = DLUtil.getValidAndNonOverlappingSuspensions(t2_suspensions, DLConstants.TEAM_1);
+            t2_suspensions = DLUtil.getValidAndNonOverlappingSuspensions(t2_suspensions, DLConstants.TEAM_2);
 
             if (t2_suspensions == null) {
                 DLUtil.showAlertDialog(this, "Invalid Suspensions for Team 2", "Please check your suspension list for Team 2");

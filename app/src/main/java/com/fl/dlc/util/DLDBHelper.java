@@ -21,6 +21,8 @@ public class DLDBHelper extends SQLiteAssetHelper {
 
         qb.setTables(DLDBConstants.DLResource.TABLE_NAME);
 
+        System.out.println("format = " + format + " , overs_left = " + overs_left + " , wickets_lost = " + wickets_lost);
+
         String[] select_columns = {DLDBConstants.DLResource.COLUMN_NAME_RESOURCE_VALUE};
         String where_clause = DLDBConstants.DLResource.COLUMN_NAME_FORMAT +
                 " = ? AND " +
@@ -37,10 +39,11 @@ public class DLDBHelper extends SQLiteAssetHelper {
                 null,
                 null,
                 null);
-        System.out.println(c.toString());
+
         c.moveToFirst();
         double resource_value = c.getDouble(c.getColumnIndexOrThrow(DLDBConstants.DLResource.COLUMN_NAME_RESOURCE_VALUE));
         c.close();
+        System.out.println("resource_value = " + resource_value);
         return resource_value;
     }
 

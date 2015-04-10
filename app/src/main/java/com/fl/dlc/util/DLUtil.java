@@ -103,6 +103,8 @@ public class DLUtil {
 
     public static String calculateResult() {
 
+        System.out.println("Calculating result " + DLModel.getT1StartOvers() + " , " + DLModel.getT2StartOvers());
+
         Double r1 = getResources(DLModel.getT1StartOvers(), DLModel.getT1Suspensions(), DLModel.getFormat());
         Double r2 = getResources(DLModel.getT2StartOvers(), DLModel.getT2Suspensions(), DLModel.getFormat());
 
@@ -110,6 +112,8 @@ public class DLUtil {
         int s = DLModel.getT1FinalScore();
 
         int par_score = calculateParScore(r1, r2, g, s);
+
+        System.out.println("Par score is " + par_score);
 
         Integer t2_score = DLModel.getT2FinalScore();
 
@@ -219,7 +223,7 @@ public class DLUtil {
         List<Suspension> nonOverlappingList = new ArrayList<>();
 
         int i = 1;
-        Suspension currentSuspension = null;
+        Suspension currentSuspension = sorted_suspensions.get(0);
 
         while (i < sorted_suspensions.size()) {
 
@@ -232,12 +236,14 @@ public class DLUtil {
                         || currentSuspension.getScore() > s.getScore()
                         || currentSuspension.getWickets() > s.getWickets()) {
                     return null;
-                } else {
-                    nonOverlappingList.add(currentSuspension);
-                    currentSuspension = null;
                 }
             }
+            nonOverlappingList.add(currentSuspension);
+            currentSuspension = s;
+            i++;
         }
+
+        nonOverlappingList.add(currentSuspension);
 
         Integer score = getScore(team);
 
@@ -265,12 +271,12 @@ public class DLUtil {
         Double start_resource = getResourceFromDB(format, 0, start_overs);
 
         for (Suspension s : suspensions) {
-
+            System.out.println("Resources for suspensions");
             Double before_resource = getResourceFromDB(format, s.getWickets(), s.getStartOvers());
             Double after_resource = getResourceFromDB(format, s.getWickets(), s.getEndOvers());
 
             Double diff = before_resource - after_resource;
-            start_overs -= diff;
+            start_resource -= diff;
         }
 
         return start_resource;
@@ -278,12 +284,14 @@ public class DLUtil {
 
     public static Double getResourceFromDB(int format, int wickets, double overs) {
 
+        System.out.println("Getting Resource from DB for overs " + overs + " wickets " + wickets);
         return DLDBConstants.dbhelper.getResource(format, overs, wickets);
     }
 
     public static int calculateParScore(Double r1, Double r2, int g, int s) {
 
         Double score = 0.0;
+        System.out.println("r1 is " + r1 + " , r2 is " + r2);
 
         if (r1 >= r2) {
 
@@ -320,7 +328,7 @@ public class DLUtil {
         result = "Team " + DLConstants.TEAM_2 + " needs " +
                 runs_req + " runs to win from " +
                 overs_left + " overs with " +
-                wickets_left + " wickets remaining (D/L Method).";
+                wickets_left + " wickets remaining.";
 
         return result;
     }
@@ -333,7 +341,7 @@ public class DLUtil {
 
         if (t2_score == par_score) {
 
-            return "The match is tied (D/L Method).";
+            return "The match is tied.";
         }
 
         if (t2_score > par_score) {
@@ -346,7 +354,7 @@ public class DLUtil {
 
         result += "Team " + winner +
                 " won the match by " +
-                margin + " runs (D/L Method).";
+                margin + " runs.";
 
         return result;
     }
