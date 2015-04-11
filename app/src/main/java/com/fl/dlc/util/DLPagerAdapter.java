@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.view.ViewGroup;
 
+import com.fl.dlc.fragment.AboutUsFragment;
 import com.fl.dlc.fragment.FinalResultFragment;
 import com.fl.dlc.fragment.Team1DetailsFragment;
 import com.fl.dlc.fragment.Team2DetailsFragment;
@@ -35,7 +36,8 @@ public class DLPagerAdapter extends FragmentPagerAdapter {
                 return Team2DetailsFragment.newInstance();
             case DLConstants.FINAL_RESULT_FRAGMENT:
                 return FinalResultFragment.newInstance();
-            //case ABOUT_US_FRAGMENT: return AboutUsFragment.newInstance("","");
+            case DLConstants.ABOUT_US_FRAGMENT:
+                return AboutUsFragment.newInstance("", "");
             default:
                 return TypeAndFormatFragment.newInstance();
         }
@@ -58,7 +60,8 @@ public class DLPagerAdapter extends FragmentPagerAdapter {
                 return "Team 2 Details";
             case DLConstants.FINAL_RESULT_FRAGMENT:
                 return "Final Result";
-            //case ABOUT_US_FRAGMENT: return AboutUsFragment.newInstance("","");
+            case DLConstants.ABOUT_US_FRAGMENT:
+                return "About DLC";
             default:
                 return "Type and Format";
         }

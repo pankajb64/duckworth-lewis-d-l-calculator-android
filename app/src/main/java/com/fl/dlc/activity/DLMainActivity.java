@@ -2,6 +2,7 @@ package com.fl.dlc.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
@@ -22,11 +23,12 @@ import com.fl.dlc.fragment.TypeAndFormatFragment;
 import com.fl.dlc.util.DLConstants;
 import com.fl.dlc.util.DLDBConstants;
 import com.fl.dlc.util.DLDBHelper;
-import com.fl.dlc.util.DLDBTask;
 import com.fl.dlc.util.DLModel;
 import com.fl.dlc.util.DLPagerAdapter;
 import com.fl.dlc.util.DLUtil;
 import com.fl.dlc.util.Suspension;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +48,21 @@ public class DLMainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dlmain);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final AdView adView = (AdView) findViewById(R.id.adView);
+                final AdRequest adRequest = new AdRequest.Builder().build();
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adView.loadAd(adRequest);
+                    }
+                });
+            }
+        }).start();
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         adapter = new DLPagerAdapter(getSupportFragmentManager());
@@ -190,10 +207,9 @@ public class DLMainActivity extends ActionBarActivity
             DLModel.setT2Suspensions(t2_suspensions);
         }
 
-        TextView result_status = (TextView) findViewById(R.id.final_result_status);
-        String waitText = getString(R.string.final_result_status_wait);
+        setWaitText();
 
-        DLDBTask task = new DLDBTask(result_status, waitText);
+        DLDBTask task = new DLDBTask();
         task.execute();
 
         /*String result = DLUtil.calculateResult();
@@ -227,5 +243,55 @@ public class DLMainActivity extends ActionBarActivity
     public void onDestroy() {
         super.onDestroy();
         dbhelper.close();
+    }
+
+    public void setWaitText() {
+
+        TextView textView = (TextView) findViewById(R.id.final_result_status);
+        String waitText = getString(R.string.final_result_status_wait);
+        textView.setText(waitText);
+    }
+
+    public void setStatusText(String result) {
+
+        TextView textView = (TextView) findViewById(R.id.final_result_status);
+        textView.setText(result);
+        textView.invalidate();
+        textView.forceLayout();
+
+    }
+
+    private class DLDBTask extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+
+            super.onPreExecute();
+            System.out.println("Pre Execute start");
+            setWaitText();
+            System.out.println("Pre Execute finish");
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            System.out.println("Doing Background work");
+            return DLUtil.calculateResult();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            super.onPostExecute(result);
+
+            System.out.println("Post execute start");
+
+            if (result == null) {
+                result = "";
+            }
+
+            setStatusText(result);
+            System.out.println("Post execute finish with result " + result);
+        }
     }
 }
