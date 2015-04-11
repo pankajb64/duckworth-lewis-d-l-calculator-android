@@ -22,6 +22,7 @@ import com.fl.dlc.fragment.TypeAndFormatFragment;
 import com.fl.dlc.util.DLConstants;
 import com.fl.dlc.util.DLDBConstants;
 import com.fl.dlc.util.DLDBHelper;
+import com.fl.dlc.util.DLDBTask;
 import com.fl.dlc.util.DLModel;
 import com.fl.dlc.util.DLPagerAdapter;
 import com.fl.dlc.util.DLUtil;
@@ -189,13 +190,19 @@ public class DLMainActivity extends ActionBarActivity
             DLModel.setT2Suspensions(t2_suspensions);
         }
 
-        String result = DLUtil.calculateResult();
+        TextView result_status = (TextView) findViewById(R.id.final_result_status);
+        String waitText = getString(R.string.final_result_status_wait);
+
+        DLDBTask task = new DLDBTask(result_status, waitText);
+        task.execute();
+
+        /*String result = DLUtil.calculateResult();
         System.out.println(result);
 
         if (result != null) {
             TextView result_status = (TextView) findViewById(R.id.final_result_status);
             result_status.setText(result);
-        }
+        }*/
     }
 
     public void addOrEditTeam1Suspensions(View view) {

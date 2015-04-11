@@ -46,6 +46,8 @@
     <string name="final_result_header">Final Result</string>
     <string name="calculate_final_result_button_text">Calculate Final Result</string>
     <string name="final_result_status">Team 2 need 250 runs to win from 45 overs with 10 wickets remaining (D/L Method)</string>
+    <string name="final_result_status_wait">Calculating Result. Please wait … </string>
+
     <string name="title_activity_suspensions">SuspensionsActivity</string>
 
     <string name="suspensions_list_header">Suspensions List</string>
@@ -63,4 +65,6 @@
     <string name="suspension_reset_button_text">Reset fields</string>
     <string name="suspension_save_edits_button_text">Save Edits</string>
     <string name="suspension_delete_button_text">Delete suspension</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>
