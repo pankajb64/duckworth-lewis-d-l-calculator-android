@@ -207,8 +207,6 @@ public class DLMainActivity extends ActionBarActivity
             DLModel.setT2Suspensions(t2_suspensions);
         }
 
-        setWaitText();
-
         DLDBTask task = new DLDBTask();
         task.execute();
 
@@ -256,9 +254,6 @@ public class DLMainActivity extends ActionBarActivity
 
         TextView textView = (TextView) findViewById(R.id.final_result_status);
         textView.setText(result);
-        textView.invalidate();
-        textView.forceLayout();
-
     }
 
     private class DLDBTask extends AsyncTask<Void, Void, String> {
