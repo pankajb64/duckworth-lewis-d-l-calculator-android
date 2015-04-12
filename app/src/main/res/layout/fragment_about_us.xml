@@ -1,13 +1,72 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fadeScrollbars="false"
+    android:fillViewport="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingTop="12dp"
     tools:context="com.fl.dlc.fragment.AboutUsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/about_us_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/about_us_header"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/about_us_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="@string/about_us_content"
+            android:textSize="17sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/about_us_share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@android:drawable/ic_menu_share"
+                android:drawableStart="@android:drawable/ic_menu_share"
+                android:onClick="shareApp"
+                android:text="@string/about_us_share_button_text"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/about_us_rate_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@android:drawable/ic_menu_edit"
+                android:drawableStart="@android:drawable/ic_menu_edit"
+                android:onClick="rateApp"
+                android:text="@string/about_us_rate_button_text"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

@@ -37,7 +37,7 @@ public class DLPagerAdapter extends FragmentPagerAdapter {
             case DLConstants.FINAL_RESULT_FRAGMENT:
                 return FinalResultFragment.newInstance();
             case DLConstants.ABOUT_US_FRAGMENT:
-                return AboutUsFragment.newInstance("", "");
+                return AboutUsFragment.newInstance();
             default:
                 return TypeAndFormatFragment.newInstance();
         }

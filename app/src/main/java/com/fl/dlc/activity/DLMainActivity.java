@@ -1,11 +1,14 @@
 package com.fl.dlc.activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,10 +19,12 @@ import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.fl.dlc.R;
+import com.fl.dlc.fragment.AboutUsFragment;
 import com.fl.dlc.fragment.FinalResultFragment;
 import com.fl.dlc.fragment.Team1DetailsFragment;
 import com.fl.dlc.fragment.Team2DetailsFragment;
 import com.fl.dlc.fragment.TypeAndFormatFragment;
+import com.fl.dlc.util.AppRater;
 import com.fl.dlc.util.DLConstants;
 import com.fl.dlc.util.DLDBConstants;
 import com.fl.dlc.util.DLDBHelper;
@@ -38,11 +43,13 @@ public class DLMainActivity extends ActionBarActivity
         implements TypeAndFormatFragment.OnFragmentInteractionListener,
         FinalResultFragment.OnFragmentInteractionListener,
         Team1DetailsFragment.OnFragmentInteractionListener,
-        Team2DetailsFragment.OnFragmentInteractionListener {
+        Team2DetailsFragment.OnFragmentInteractionListener,
+        AboutUsFragment.OnFragmentInteractionListener {
 
     ViewPager viewPager;
     DLPagerAdapter adapter;
     DLDBHelper dbhelper;
+    ShareActionProvider shareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,14 +82,36 @@ public class DLMainActivity extends ActionBarActivity
 
         dbhelper = new DLDBHelper(this);
         DLDBConstants.dbhelper = dbhelper;
+
+        AppRater.app_launched(this);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_dlmain, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.menu_dlmain, menu);
+
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        shareActionProvider.setShareIntent(getDefaultShareIntent());
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private Intent getDefaultShareIntent() {
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        String title = "Duckworth Lewis (D/L) Calculator";
+        String body = "Awesome app for cricket lovers! " +
+                "Check out D/L Calculator on Android " +
+                "http://play.google.com/store/app/details?id=" + getPackageName() +
+                " via @dlc";
+        intent.putExtra(Intent.EXTRA_SUBJECT, title);
+        intent.putExtra(Intent.EXTRA_TEXT, body);
+
+        return intent;
     }
 
     @Override
@@ -93,7 +122,19 @@ public class DLMainActivity extends ActionBarActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_item_share) {
+
+            return true;
+        }
+
+        if (id == R.id.menu_item_rate) {
+
+            startRateActivity();
+        }
+
+        if (id == R.id.menu_item_help) {
+
+            viewPager.setCurrentItem(DLConstants.ABOUT_US_FRAGMENT, true);
             return true;
         }
 
@@ -254,6 +295,28 @@ public class DLMainActivity extends ActionBarActivity
 
         TextView textView = (TextView) findViewById(R.id.final_result_status);
         textView.setText(result);
+    }
+
+    public void startRateActivity() {
+
+        Uri uri = Uri.parse("market://details?id=" + getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/app/details?id=" + getPackageName())));
+        }
+    }
+
+    public void shareApp(View view) {
+
+        startActivity(Intent.createChooser(getDefaultShareIntent(), "Share via"));
+    }
+
+    public void rateApp(View view) {
+
+        startRateActivity();
     }
 
     private class DLDBTask extends AsyncTask<Void, Void, String> {

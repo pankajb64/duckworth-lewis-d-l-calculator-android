@@ -7,7 +7,7 @@ public class DLConstants {
     public static final int TEAM2_DETAILS_FRAGMENT = 2;
     public static final int FINAL_RESULT_FRAGMENT = 3;
     public static final int ABOUT_US_FRAGMENT = 4;
-    public static final int NUM_ITEMS = 4;
+    public static final int NUM_ITEMS = 5;
 
     public static final int G50_ODI_TEST_NATIONS = 245;
     public static final int G50_ODI_REST = 200;

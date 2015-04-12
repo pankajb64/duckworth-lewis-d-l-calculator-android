@@ -68,6 +68,19 @@
 
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_us_header">About the Duckworth/Lewis Method</string>
+    <string name="about_us_content">The Duckworth/Lewis Method is used for calculation of revised targets in rain-interrupted limited-overs matches.
+The calculations depend on the relative run scoring resources (overs and wickets) available to the two sides.\n\nPlease
+        note that this application uses the Duckworth/Lewis Standard Edition
+    which is the one made available for free by the ICC.\n\nPlease
+        refer to the <a href="http://icc-live.s3.amazonaws.com/cms/media/about_docs/542b84d41b3c2-The%20D_L%20methodology%20-%20Answers%20to%20Frequently%20Asked%20Questions.docx">ICC Duckworth/Lewis FAQ (doc)</a>
+        to know about the Professional Edition and the recently introduced Stern Edition.
+        To know more about D/L method, read the <a href="http://icc-live.s3.amazonaws.com/cms/media/about_docs/542b8685a3693-06]%20Duckworth%20Lewis_2014.pdf">Duckworth Lewis Guide (pdf)</a> on <a href="http://www.icc-cricket.com/">ICC website</a></string>
+
+    <string name="menu_item_share">Share</string>
+    <string name="menu_item_rate">Rate us!</string>
+    <string name="menu_item_help">About DLC</string>
+
+    <string name="about_us_share_button_text">Share this app</string>
+    <string name="about_us_rate_button_text">Rate us!</string>
 </resources>
