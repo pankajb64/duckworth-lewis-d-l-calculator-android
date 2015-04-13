@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Duckworth-Lewis (D/L) Calculator</string>
+    <string name="app_name">D/L Calculator</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -83,4 +83,8 @@ The calculations depend on the relative run scoring resources (overs and wickets
 
     <string name="about_us_share_button_text">Share this app</string>
     <string name="about_us_rate_button_text">Rate us!</string>
+
+    <string name="title_activity_dlsplash_screen">DLSplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

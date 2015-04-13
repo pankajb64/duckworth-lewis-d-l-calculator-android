@@ -24,13 +24,14 @@ public class DLDBHelper extends SQLiteAssetHelper {
         System.out.println("format = " + format + " , overs_left = " + overs_left + " , wickets_lost = " + wickets_lost);
 
         String[] select_columns = {DLDBConstants.DLResource.COLUMN_NAME_RESOURCE_VALUE};
-        String where_clause = DLDBConstants.DLResource.COLUMN_NAME_FORMAT +
-                " = ? AND " +
-                DLDBConstants.DLResource.COLUMN_NAME_OVERS_LEFT +
+        /*String where_clause = DLDBConstants.DLResource.COLUMN_NAME_FORMAT +
+                " = ? AND " +*/
+        String where_clause = DLDBConstants.DLResource.COLUMN_NAME_OVERS_LEFT +
                 " = ? AND " +
                 DLDBConstants.DLResource.COLUMN_NAME_WICKETS_LOST +
                 " = ?";
-        String[] where_values = {format + "", overs_left + "", wickets_lost + ""};
+        //String[] where_values = {format + "", overs_left + "", wickets_lost + ""};
+        String[] where_values = {overs_left + "", wickets_lost + ""};
 
         Cursor c = qb.query(db,
                 select_columns,
