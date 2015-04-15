@@ -85,6 +85,5 @@ The calculations depend on the relative run scoring resources (overs and wickets
     <string name="about_us_rate_button_text">Rate us!</string>
 
     <string name="title_activity_dlsplash_screen">DLSplashScreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_dlmain">Duckworth Lewis (D/L) Calculator</string>
 </resources>

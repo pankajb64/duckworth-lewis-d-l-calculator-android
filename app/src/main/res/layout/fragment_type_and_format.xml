@@ -63,10 +63,13 @@
 
             <Spinner
                 android:id="@+id/format_spinner"
+                style="@style/spinner_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:entries="@array/format_entries" />
+                android:entries="@array/format_entries"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,10 +90,13 @@
 
             <Spinner
                 android:id="@+id/type_spinner"
+                style="@style/spinner_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:entries="@array/type_entries" />
+                android:entries="@array/type_entries"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" />
         </LinearLayout>
 
         <Button
