@@ -107,7 +107,7 @@ public class DLMainActivity extends ActionBarActivity
         String body = "Awesome app for cricket lovers! " +
                 "Check out D/L Calculator on Android " +
                 "http://play.google.com/store/app/details?id=" + getPackageName() +
-                " via @dlc";
+                " via @dl_calc";
         intent.putExtra(Intent.EXTRA_SUBJECT, title);
         intent.putExtra(Intent.EXTRA_TEXT, body);
 
