@@ -233,6 +233,9 @@ public class DLMainActivity extends ActionBarActivity
             DLModel.setT1Suspensions(t1_suspensions);
         }
 
+        Double overs_lost = DLUtil.getTotalOversLost(t1_suspensions);
+        DLModel.setT2StartOvers(t2overs - overs_lost);
+
         List<Suspension> t2_suspensions = DLModel.getT2Suspensions();
 
         if (t2_suspensions == null || t2_suspensions.size() == 0) {

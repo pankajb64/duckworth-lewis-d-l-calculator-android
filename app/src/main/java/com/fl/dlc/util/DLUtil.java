@@ -358,4 +358,20 @@ public class DLUtil {
 
         return result;
     }
+
+    public static Double getTotalOversLost(List<Suspension> suspensions) {
+
+        Double overs_lost = 0.0;
+
+        if (suspensions == null || suspensions.size() <= 0) {
+            return overs_lost;
+        }
+
+        for (Suspension s : suspensions) {
+
+            overs_lost += (s.getStartOvers() - s.getEndOvers());
+        }
+
+        return overs_lost;
+    }
 }
