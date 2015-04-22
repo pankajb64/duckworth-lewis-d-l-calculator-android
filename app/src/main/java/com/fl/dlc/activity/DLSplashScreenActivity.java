@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.fl.dlc.R;
+import com.fl.dlc.util.DLConstants;
 
 public class DLSplashScreenActivity extends Activity {
 
@@ -25,6 +26,7 @@ public class DLSplashScreenActivity extends Activity {
 
                 //Start Main Activity once timer is over
                 Intent intent = new Intent(DLSplashScreenActivity.this, DLMainActivity.class);
+                intent.putExtra(DLConstants.CLEAR_SUSPENSIONS, true);
                 startActivity(intent);
 
                 //Close this activity

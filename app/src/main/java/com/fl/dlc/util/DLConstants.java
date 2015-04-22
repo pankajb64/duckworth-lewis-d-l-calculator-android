@@ -27,4 +27,6 @@ public class DLConstants {
 
     public static final int SUSPENSION_EDIT = 0;
     public static final int SUSPENSION_DELETE = 1;
+
+    public static String CLEAR_SUSPENSIONS = "clearSuspensions";
 }

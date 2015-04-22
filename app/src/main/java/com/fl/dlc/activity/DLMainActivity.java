@@ -56,11 +56,20 @@ public class DLMainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dlmain);
 
+        Intent intent = getIntent();
+        boolean clearSuspension = intent.getBooleanExtra(DLConstants.CLEAR_SUSPENSIONS, false);
+
+        if (clearSuspension) {
+            DLModel.setT1Suspensions(null);
+            DLModel.setT1Suspensions(null);
+        }
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 final AdView adView = (AdView) findViewById(R.id.adView);
-                final AdRequest adRequest = new AdRequest.Builder().build();
+                final AdRequest adRequest = new AdRequest.Builder().addTestDevice("7CCFF84356925191B618A8CFD8B71F44").build();
+
 
                 runOnUiThread(new Runnable() {
                     @Override

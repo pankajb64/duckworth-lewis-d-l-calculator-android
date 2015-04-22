@@ -66,7 +66,8 @@
     <string name="suspension_save_edits_button_text">Save Edits</string>
     <string name="suspension_delete_button_text">Delete suspension</string>
 
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id">ca-app-pub-1746548249634631/1446733301</string>
 
     <string name="about_us_header">About the Duckworth/Lewis Method</string>
     <string name="about_us_content">The Duckworth/Lewis Method is used for calculation of revised targets in rain-interrupted limited-overs matches.
