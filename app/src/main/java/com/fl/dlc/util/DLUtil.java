@@ -12,7 +12,7 @@ public class DLUtil {
 
     public static Double getValidOvers(String text, int team) {
 
-        System.out.println("Overs - " + text + " Format " + DLModel.getFormat());
+        //System.out.println("Overs - " + text + " Format " + DLModel.getFormat());
         Double overs = 0.0;
 
         overs = getMaxOvers(team);
@@ -103,7 +103,7 @@ public class DLUtil {
 
     public static String calculateResult() {
 
-        System.out.println("Calculating result " + DLModel.getT1StartOvers() + " , " + DLModel.getT2StartOvers());
+        //System.out.println("Calculating result " + DLModel.getT1StartOvers() + " , " + DLModel.getT2StartOvers());
 
         Double r1 = getResources(DLModel.getT1StartOvers(), DLModel.getT1Suspensions(), DLModel.getFormat());
         Double r2 = getResources(DLModel.getT2StartOvers(), DLModel.getT2Suspensions(), DLModel.getFormat());
@@ -113,7 +113,7 @@ public class DLUtil {
 
         int par_score = calculateParScore(r1, r2, g, s);
 
-        System.out.println("Par score is " + par_score);
+        //System.out.println("Par score is " + par_score);
 
         Integer t2_score = DLModel.getT2FinalScore();
 
@@ -271,7 +271,7 @@ public class DLUtil {
         Double start_resource = getResourceFromDB(format, 0, start_overs);
 
         for (Suspension s : suspensions) {
-            System.out.println("Resources for suspensions");
+            //System.out.println("Resources for suspensions");
             Double before_resource = getResourceFromDB(format, s.getWickets(), s.getStartOvers());
             Double after_resource = getResourceFromDB(format, s.getWickets(), s.getEndOvers());
 
@@ -284,14 +284,14 @@ public class DLUtil {
 
     public static Double getResourceFromDB(int format, int wickets, double overs) {
 
-        System.out.println("Getting Resource from DB for overs " + overs + " wickets " + wickets);
+        //System.out.println("Getting Resource from DB for overs " + overs + " wickets " + wickets);
         return DLDBConstants.dbhelper.getResource(format, overs, wickets);
     }
 
     public static int calculateParScore(Double r1, Double r2, int g, int s) {
 
         Double score = 0.0;
-        System.out.println("r1 is " + r1 + " , r2 is " + r2);
+        //System.out.println("r1 is " + r1 + " , r2 is " + r2);
 
         if (r1 >= r2) {
 

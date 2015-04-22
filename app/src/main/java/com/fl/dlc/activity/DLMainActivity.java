@@ -230,7 +230,7 @@ public class DLMainActivity extends ActionBarActivity
         DLModel.setT2FinalScore(t2score);
 
         List<Suspension> t1_suspensions = DLModel.getT1Suspensions();
-        System.out.println("t1_suspensions == null ? " + t1_suspensions);
+        //System.out.println("t1_suspensions == null ? " + t1_suspensions);
         if (t1_suspensions == null || t1_suspensions.size() == 0) {
             DLModel.setT1Suspensions(new ArrayList<Suspension>());
         } else {
@@ -338,15 +338,15 @@ public class DLMainActivity extends ActionBarActivity
         protected void onPreExecute() {
 
             super.onPreExecute();
-            System.out.println("Pre Execute start");
+            //System.out.println("Pre Execute start");
             setWaitText();
-            System.out.println("Pre Execute finish");
+            //System.out.println("Pre Execute finish");
         }
 
         @Override
         protected String doInBackground(Void... params) {
 
-            System.out.println("Doing Background work");
+            //System.out.println("Doing Background work");
             return DLUtil.calculateResult();
         }
 
@@ -355,14 +355,14 @@ public class DLMainActivity extends ActionBarActivity
 
             super.onPostExecute(result);
 
-            System.out.println("Post execute start");
+            //System.out.println("Post execute start");
 
             if (result == null) {
                 result = "";
             }
 
             setStatusText(result);
-            System.out.println("Post execute finish with result " + result);
+            //System.out.println("Post execute finish with result " + result);
         }
     }
 }

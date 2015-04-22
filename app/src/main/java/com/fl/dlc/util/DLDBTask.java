@@ -12,22 +12,22 @@ public class DLDBTask extends AsyncTask<Void, Void, String> {
 
         this.textView = textView;
         this.waitText = waitText;
-        System.out.println("DB Task Created");
+        //System.out.println("DB Task Created");
     }
 
     @Override
     protected void onPreExecute() {
 
         super.onPreExecute();
-        System.out.println("Pre Execute start");
+        //System.out.println("Pre Execute start");
         textView.setText(waitText);
-        System.out.println("Pre Execute finish");
+        //System.out.println("Pre Execute finish");
     }
 
     @Override
     protected String doInBackground(Void... params) {
 
-        System.out.println("Doing Background work");
+        //System.out.println("Doing Background work");
         return DLUtil.calculateResult();
     }
 
@@ -36,13 +36,13 @@ public class DLDBTask extends AsyncTask<Void, Void, String> {
 
         super.onPostExecute(result);
 
-        System.out.println("Post execute start");
+        //System.out.println("Post execute start");
 
         if (result == null) {
             result = "";
         }
 
         textView.setText(result);
-        System.out.println("Post execute finish with result " + result);
+        //System.out.println("Post execute finish with result " + result);
     }
 }
