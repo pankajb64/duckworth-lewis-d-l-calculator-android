@@ -68,7 +68,8 @@ public class DLMainActivity extends ActionBarActivity
             @Override
             public void run() {
                 final AdView adView = (AdView) findViewById(R.id.adView);
-                final AdRequest adRequest = new AdRequest.Builder().addTestDevice("7CCFF84356925191B618A8CFD8B71F44").build();
+                //final AdRequest adRequest = new AdRequest.Builder().addTestDevice("7CCFF84356925191B618A8CFD8B71F44").build();
+                final AdRequest adRequest = new AdRequest.Builder().build();
 
 
                 runOnUiThread(new Runnable() {
