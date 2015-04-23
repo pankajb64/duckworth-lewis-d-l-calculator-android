@@ -27,6 +27,7 @@
             android:name=".activity.DLMainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_dlmain"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <!--intent-filter>
                 <action android:name="android.intent.action.MAIN" />
